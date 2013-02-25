@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             ['build-test', 'Build and test the entire library'],
             ['test', 'Test the library with ' + 'yogi'.magenta],
             ['test-cli', 'Test the library via CLI with ' + 'yogi'.magenta],
-            ['travis', 'Perform a travis build and test (uses enviroment vars to determine tests)'],
+            ['travis', 'Perform a travis test (uses enviroment vars to determine tests)'],
             ['help', 'Show this stuffs']
         ], len = 0,
         pad = function(line) {
