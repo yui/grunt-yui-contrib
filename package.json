@@ -1,7 +1,7 @@
 {
     "name": "grunt-yui-contrib",
     "description": "YUI Build Tasks",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "dependencies": {
         "cpr": "~0.0.6",
         "timethat": "~0.0.2",
