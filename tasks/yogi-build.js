@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 
         child.on('exit', function(code) {
             if (code) {
-                grunt.log.fail('yogi build exited with code: ' + code);
+                grunt.fail.fatal('yogi build exited with code: ' + code);
             }
             done();
         });
