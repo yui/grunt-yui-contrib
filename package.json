@@ -3,7 +3,7 @@
     "description": "YUI Build Tasks",
     "version": "0.0.2",
     "dependencies": {
-        "cpr": "~0.0.6",
+        "cpr": "~0.1.0",
         "timethat": "~0.0.2",
         "rimraf": "~2.1.4",
         "cssproc": "~0.0.1"
