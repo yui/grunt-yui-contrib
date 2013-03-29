@@ -13,7 +13,7 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version'),
+    var VERSION = grunt.option('release-version') || '',
         STAMP = [
             '/*',
             '<%= buildtag %>',
@@ -25,8 +25,10 @@ module.exports = function(grunt) {
         ].join('\n'),
         start = path.join(process.cwd(), 'release', VERSION);
     
-
-    grunt.config.set('version', VERSION);
+    
+    if (VERSION !== '') {
+        grunt.config.set('version', VERSION);
+    }
 
     grunt.registerTask('dist', 'Create a YUI Dist Release', [
         'dist-tag',

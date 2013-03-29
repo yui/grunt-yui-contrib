@@ -15,10 +15,9 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version'),
+    var VERSION = grunt.option('release-version') | '',
         BUILD = grunt.option('release-build'),
-        start = path.join(process.cwd(), 'release', VERSION),
-        startTime, head, sha;
+        start, startTime, head, sha;
 
     if (VERSION && (!BUILD || BUILD === 'git' || BUILD === 'sha')) {
         head = grunt.file.read('.git/HEAD').replace('ref: ', '').trim();
@@ -33,7 +32,10 @@ module.exports = function(grunt) {
         }
     }
 
-    grunt.config.set('version', VERSION);
+    if (VERSION && VERSION !== '') {
+        start = path.join(process.cwd(), 'release', VERSION);
+        grunt.config.set('version', VERSION);
+    }
 
     grunt.registerTask('release', 'Create a YUI Release', [
         'release-boot',
