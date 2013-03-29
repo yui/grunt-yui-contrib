@@ -6,10 +6,9 @@ http://yuilibrary.com/license/
 
 module.exports = function(grunt) {
     grunt.registerTask('travis', 'Perform a travis build', function() {
-        if (process.env.TRAVIS_NODE_VERSION === '0.8') {
-            grunt.task.run('test');
-        } else {
-            grunt.task.run('test-cli');
-        }
+        //If travis node version is 0.10.x we should run all the tests
+        //otherwise only run the CLI tests.
+        var task = ((process.env.TRAVIS_NODE_VERSION === '0.10') ? 'test' : 'test-cli');
+        grunt.task.run(task);
     });
 };
