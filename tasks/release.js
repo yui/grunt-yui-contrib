@@ -15,7 +15,7 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version') | '',
+    var VERSION = grunt.option('release-version') || '',
         BUILD = grunt.option('release-build'),
         start, startTime, head, sha;
 
