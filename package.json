@@ -9,11 +9,11 @@
         "cssproc": "~0.0.1"
     },
     "peerDependencies": {
-        "grunt": "~0.4.0"
+        "grunt": "~0.4.1"
     },
     "devDependencies": {
-        "vows": "*",
-        "grunt": "~0.4.0",
+        "vows": "~0.7.0",
+        "grunt": "~0.4.1",
         "yui-lint": "~0.1.1",
         "jshint": "~0.9.0",
         "istanbul": "~0.1.8"
