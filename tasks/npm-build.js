@@ -43,6 +43,7 @@ var fs = require('fs'),
 module.exports = function(grunt) {
 
     var VERSION = grunt.option('release-version');
+    
 
     //Create the npm task
     grunt.registerTask('npm', 'Building YUI npm package', ['npm-boot', 'npm-clean', 'npm-copy', 'npm-process', 'npm-package']);
@@ -59,7 +60,11 @@ module.exports = function(grunt) {
     grunt.registerTask('npm-copy', 'Bootstrapping npm package', function() {
         var done = this.async(),
             from = path.join(process.cwd(), 'build/');
-
+        
+        if (grunt.option('release')) {
+            from = path.join(BASE, 'release', VERSION, 'dist', 'build');
+        }
+            
         grunt.log.write('Copying to build dir');
         cpr(from, start, function() {
             grunt.log.writeln('...OK');
