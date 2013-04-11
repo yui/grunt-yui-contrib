@@ -22,7 +22,11 @@ module.exports = function(grunt) {
     if (VERSION && (!BUILD || BUILD === 'git' || BUILD === 'sha')) {
         head = grunt.file.read('.git/HEAD').replace('ref: ', '').trim();
         if (head) {
-            sha = grunt.file.read(path.join('.git/', head)).trim();
+            try {
+                sha = grunt.file.read(path.join('.git/', head)).trim();
+            } catch (e) {
+                sha = head.trim();
+            }
             if (sha) {
                 sha = sha.substr(0, 7);
                 grunt.log.warn('No --release-build passed, using sha: ' + sha);
