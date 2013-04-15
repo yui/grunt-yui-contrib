@@ -21,8 +21,8 @@ var tests = {
         topic: function() {
             return tasks.length;
         },
-        'and find 36 tasks': function(topic) {
-            assert.equal(36, topic);
+        'and find 37 tasks': function(topic) {
+            assert.equal(37, topic);
         }
     }
 };
