@@ -19,6 +19,11 @@ module.exports = function(grunt) {
         BUILD = grunt.option('release-build'),
         start, startTime, head, sha;
 
+    if (VERSION === '') {
+        VERSION = grunt.file.readJSON('package.json').version;
+        grunt.log.warn('No --release-version passed, using version from package.json: ' + VERSION);
+    }
+
     if (VERSION && (!BUILD || BUILD === 'git' || BUILD === 'sha')) {
         head = grunt.file.read('.git/HEAD').replace('ref: ', '').trim();
         if (head) {
