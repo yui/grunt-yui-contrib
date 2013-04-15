@@ -13,24 +13,20 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version') || '',
-        STAMP = [
-            '/*',
-            '<%= buildtag %>',
-            '<%= copyright %>',
-            '<%= license %>',
-            '*/',
-            '',
-            ''
-        ].join('\n'),
-        start = path.join(process.cwd(), 'release', VERSION);
     
-    
-    if (VERSION !== '') {
-        grunt.config.set('version', VERSION);
-    }
+    var STAMP = [
+        '/*',
+        '<%= buildtag %>',
+        '<%= copyright %>',
+        '<%= license %>',
+        '*/',
+        '',
+        ''
+    ].join('\n'),
+        VERSION, start;
 
     grunt.registerTask('dist', 'Create a YUI Dist Release', [
+        'dist-boot',
         'dist-tag',
         'dist-docs',
         'dist-api',
@@ -39,6 +35,12 @@ module.exports = function(grunt) {
         'dist-skins',
         'dist-extras'
     ]);
+
+    grunt.registerTask('dist-boot', 'Booting dist build', function() {
+        grunt.log.ok('Booting dist build');
+        VERSION = grunt.config.get('version'),
+        start = path.join(process.cwd(), 'release', VERSION);
+    });
 
     grunt.registerTask('dist-tag', 'Tag files with copyright stamp', function() {
         var stamp = grunt.template.process(STAMP),

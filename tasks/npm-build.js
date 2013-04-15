@@ -42,14 +42,16 @@ var fs = require('fs'),
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version');
+    var VERSION;
     
-
     //Create the npm task
     grunt.registerTask('npm', 'Building YUI npm package', ['npm-boot', 'npm-clean', 'npm-copy', 'npm-process', 'npm-package']);
 
     grunt.registerTask('npm-boot', 'Bootstrapping npm package', function() {
         var log = 'Creating development NPM build';
+
+        VERSION = grunt.config.get('version');
+
         if (grunt.option('release')) {
             log = 'Creating NPM Release Build';
             start = path.join(BASE, 'release', VERSION, 'npm');
@@ -61,11 +63,12 @@ module.exports = function(grunt) {
         var done = this.async(),
             from = path.join(process.cwd(), 'build/');
         
+        grunt.log.write('Copying to build dir: ' + start);
+
         if (grunt.option('release')) {
             from = path.join(BASE, 'release', VERSION, 'dist', 'build');
         }
             
-        grunt.log.write('Copying to build dir');
         cpr(from, start, function() {
             grunt.log.writeln('...OK');
             grunt.file.copy(path.join(process.cwd(), 'README.md'), path.join(start, 'README.md'));

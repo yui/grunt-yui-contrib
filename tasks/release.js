@@ -59,10 +59,17 @@ module.exports = function(grunt) {
         'release-zip',
         'release-finish'
     ]);
-    grunt.registerTask('release-prebuild', 'Build and test before prep', [
-        'build',
-        'test'
-    ]);
+
+    if ('GRUNT_SKIP_PREBUILD' in process.env) {
+        grunt.registerTask('release-prebuild', 'Build and test before prep', function() {
+            grunt.log.warn('Found GRUNT_SKIP_PREBUILD in Env, skipping prebuild task.');
+        });
+    } else {
+        grunt.registerTask('release-prebuild', 'Build and test before prep', [
+            'build',
+            'test'
+        ]);
+    }
 
     grunt.registerTask('release-validate', 'Validate the release before zipping', function() {
         grunt.log.ok('Validating the Release files.');
@@ -171,7 +178,7 @@ module.exports = function(grunt) {
             grunt.fail.fatal('No build number found, use --release-build=x.y.z');
         }
 
-        grunt.log.ok('Preparing YUI release for ' + VERSION + ', building and testing raw');
+        grunt.log.ok('Preparing YUI release for ' + VERSION + '.');
     });
 
     grunt.registerTask('release-prep', 'Booting the YUI Release', function() {

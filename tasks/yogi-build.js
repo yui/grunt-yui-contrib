@@ -10,10 +10,9 @@ var exec = require('child_process').spawn,
 
 module.exports = function(grunt) {
 
-    var VERSION = grunt.option('release-version');
-
     grunt.registerTask('yogi-build', 'Building YUI', function() {
         var done = this.async(),
+            VERSION = grunt.config.get('version'),
             line = 'Building all modules with yogi',
             yogi = path.join(process.cwd(), 'node_modules/yogi/bin/yogi.js'),
             args = [
