@@ -21,10 +21,17 @@ Usage
 
 >> Options:
 
-  --release-version=<VERSION>   Pass to set the version of the release (required for a release build)
+  --release-version=<VERSION>   Pass to set the version of the release (optional, will read from package.json)
   --release-build=<BUILD>       Pass to set the build number of the release, if not passed the git sha will be used.
   --cache-build                 Cache the shifter build.
+
+>> Env Vars:
+
+GRUNT_SKIP_BUILD=1      Skip the `build` step (used if you need to `npm i` more than once.
+GRUNT_SKIP_PREBUILD=1   Will skip release prebuild (don't build into ./build, only build into ./release)
+
 ```
+
 
 Build Status
 ------------
