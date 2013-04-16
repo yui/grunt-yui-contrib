@@ -32,6 +32,13 @@ module.exports = function(grunt) {
             args.push('--cli');
         }
 
+        if ('TEST_RESULTS_DIR' in process.env) {
+            grunt.log.ok('Saving JUnitXML file to: ' + process.env.TEST_RESULTS_DIR);
+            args.push('--junit');
+            args.push('--outfile');
+            args.push(path.join(process.env.TEST_RESULTS_DIR, 'junit.xml'));
+        }
+
         child = exec(process.execPath, args, {
             cwd: path.join(process.cwd(), 'src'),
             stdio: 'inherit',
