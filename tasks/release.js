@@ -58,6 +58,7 @@ module.exports = function(grunt) {
         'release-validate',
         'release-zip',
         'release-artifacts',
+        'release-docs',
         'release-finish'
     ]);
 
@@ -185,6 +186,24 @@ module.exports = function(grunt) {
     grunt.registerTask('release-prep', 'Booting the YUI Release', function() {
         grunt.cli.options.release = true;
         grunt.log.ok('All tests passed, starting offical build now');
+    });
+
+    grunt.registerTask('release-docs', 'Doc Artifact Moving', function() {
+        var artifacts,
+            done = this.async(),
+            start = new Date(),
+            base = path.join('release', VERSION, 'dist');
+
+        if ('DOCS_DIR' in process.env) {
+            artifacts = process.env.DOCS_DIR;
+            grunt.log.ok('Archiving doc artifacts here: ' + artifacts);
+            cpr(base, artifacts, function() {
+                grunt.log.ok('Finished copying doc artifacts in ' + timethat.calc(start));
+                done();
+            });
+        } else {
+            grunt.log.ok('Skipping doc artifact archival');
+        }
     });
 
     grunt.registerTask('release-artifacts', 'Artifact Moving', function() {
