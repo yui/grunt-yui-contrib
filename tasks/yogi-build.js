@@ -19,13 +19,44 @@ module.exports = function(grunt) {
                 yogi,
                 'build',
                 '--istanbul'
-            ], child;
+            ], walkArgs, child,
+            buildCore = function() {
+                grunt.log.ok('Building Loader Meta-Data');
+                var child = exec(process.execPath, [
+                    yogi,
+                    'loader',
+                    '--mix',
+                    '--yes'
+                ], {
+                    cwd: path.join(process.cwd(), 'src'),
+                    stdio: 'inherit',
+                    env: process.env
+                });
+
+                child.on('exit', function(code) {
+                    if (code) {
+                        grunt.fail.fatal('yogi seed build exited with code: ' + code);
+                    }
+                    grunt.log.ok('Building Seed Files');
+                    var child = exec(process.execPath, args, {
+                        cwd: path.join(process.cwd(), 'src', 'yui'),
+                        stdio: 'inherit',
+                        env: process.env
+                    });
+
+                    child.on('exit', function(code) {
+                        if (code) {
+                            grunt.fail.fatal('yogi seed build exited with code: ' + code);
+                        }
+                        done();
+                    });
+                });
+            };
 
         if (grunt.option('release')) {
             line += ' for release ' + VERSION;
         }
         grunt.log.ok(line);
-
 
         if (grunt.option('release')) {
             args.push('--replace-version');
@@ -38,7 +69,15 @@ module.exports = function(grunt) {
             }
         }
 
-        child = exec(process.execPath, args, {
+        walkArgs = [].concat(args);
+        walkArgs.push('-x');
+        walkArgs.push('yui');
+        walkArgs.push('-x');
+        walkArgs.push('loader');
+        walkArgs.push('-x');
+        walkArgs.push('get');
+
+        child = exec(process.execPath, walkArgs, {
             cwd: path.join(process.cwd(), 'src'),
             stdio: 'inherit',
             env: process.env
@@ -48,7 +87,7 @@ module.exports = function(grunt) {
             if (code) {
                 grunt.fail.fatal('yogi build exited with code: ' + code);
             }
-            done();
+            buildCore();
         });
 
     });
