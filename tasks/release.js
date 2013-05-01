@@ -102,6 +102,7 @@ module.exports = function(grunt) {
             'dist/releasenotes/HISTORY.yui.md',
             'dist/tests',
             'dist/tests/yui/tests/unit/index.html',
+            'dist/build/uploader/assets/flashuploader.swf',
             'dist/README.md',
             'dist/LICENSE.md'
         ],
@@ -126,7 +127,7 @@ module.exports = function(grunt) {
         });
 
     });
-    
+
     grunt.registerTask('release-zip', 'Zipping up', [
         'compress:dist',
         'compress:cdn',
@@ -268,7 +269,7 @@ module.exports = function(grunt) {
                     });
                 }
             });
-            
+
             grunt.log.writeln('Processed ' + complete + ' of ' + count + ' css files.');
             done();
         });
@@ -305,7 +306,7 @@ module.exports = function(grunt) {
                     });
                 }
             });
-            
+
             grunt.log.writeln('Processed ' + complete + ' of ' + count + ' css files.');
             done();
         });
