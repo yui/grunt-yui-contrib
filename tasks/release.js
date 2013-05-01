@@ -104,6 +104,7 @@ module.exports = function(grunt) {
             'dist/releasenotes/HISTORY.yui.md',
             'dist/tests',
             'dist/tests/yui/tests/unit/index.html',
+            'dist/build/io-xdr/io.swf',
             'dist/README.md',
             'dist/LICENSE.md'
         ],
