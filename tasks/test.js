@@ -10,7 +10,7 @@ var exec = require('child_process').spawn,
 
 module.exports = function(grunt) {
     var CLI = false;
-    
+
     grunt.registerTask('test-cli', 'Testing YUI via the CLI', function() {
         CLI = true;
         grunt.task.run('test');
@@ -19,13 +19,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', 'Testing YUI', function() {
         grunt.log.ok('Testing all modules with yogi');
-        
+
         var done = this.async(),
             yogi = path.join(process.cwd(), 'node_modules/yogi/bin/yogi.js'),
             args = [
                 yogi,
                 'test'
-            ], child;
+            ],
+            child;
 
         if (CLI) {
             CLI = false;
