@@ -14,7 +14,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test-cli', 'Testing YUI via the CLI', function() {
         CLI = true;
         grunt.task.run('test');
-
     });
 
     grunt.registerTask('test', 'Testing YUI', function() {
@@ -56,9 +55,7 @@ module.exports = function(grunt) {
             }
             done();
         });
-
     });
-
 };
 
 

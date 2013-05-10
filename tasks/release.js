@@ -84,10 +84,12 @@ module.exports = function(grunt) {
             'cdn/build',
             'cdn/build/yui',
             'cdn/build/yui/yui-min.js',
+            'cdn/build/uploader/assets/flashuploader.swf',
             'cdn-ssl',
             'cdn-ssl/build',
             'cdn-ssl/build/yui',
             'cdn-ssl/build/yui/yui-min.js',
+            'cdn-ssl/build/uploader/assets/flashuploader.swf',
             'npm',
             'npm/package.json',
             'npm/index.js',
@@ -102,6 +104,7 @@ module.exports = function(grunt) {
             'dist/releasenotes/HISTORY.yui.md',
             'dist/tests',
             'dist/tests/yui/tests/unit/index.html',
+            'dist/build/io-xdr/io.swf',
             'dist/README.md',
             'dist/LICENSE.md'
         ],
@@ -126,7 +129,7 @@ module.exports = function(grunt) {
         });
 
     });
-    
+
     grunt.registerTask('release-zip', 'Zipping up', [
         'compress:dist',
         'compress:cdn',
@@ -268,7 +271,7 @@ module.exports = function(grunt) {
                     });
                 }
             });
-            
+
             grunt.log.writeln('Processed ' + complete + ' of ' + count + ' css files.');
             done();
         });
@@ -305,7 +308,7 @@ module.exports = function(grunt) {
                     });
                 }
             });
-            
+
             grunt.log.writeln('Processed ' + complete + ' of ' + count + ' css files.');
             done();
         });
