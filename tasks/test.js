@@ -28,6 +28,10 @@ module.exports = function(grunt) {
             ],
             child;
 
+        // echoecho-based load-tests require a longer timeout.
+        args.push('-t');
+        args.push(120);
+
         if (CLI) {
             CLI = false;
             args.push('--cli');
