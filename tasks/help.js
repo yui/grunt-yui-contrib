@@ -23,7 +23,7 @@ module.exports = function(grunt) {
             ['history-rollup', 'Creates History Rollup file (Run before history-replace)'],
             ['history-populate', 'Populates History files with @VERSION@ if not there already'],
             ['history-replace', 'Replaces @VERSION@ in History files with *release-version*'],
-            ['help', 'Show this stuffs'],
+            ['help', 'Show this stuffs']
         ], len = 0,
         pad = function(line) {
             for (var i = line.length; i < len; i++) {
