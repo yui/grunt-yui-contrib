@@ -22,7 +22,7 @@ var tests = {
             return tasks.length;
         },
         'and find 38 tasks': function(topic) {
-            assert.equal(38, topic);
+            assert.equal(41, topic);
         }
     }
 };
