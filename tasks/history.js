@@ -3,8 +3,7 @@ Copyright (c) 2013, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-var path = require('path'),
-    exec = require('child_process').spawn;
+var path = require('path');
 
 
 module.exports = function(grunt) {
@@ -36,7 +35,7 @@ module.exports = function(grunt) {
                 content = content.split(key)[0];
                 //grunt.log.writeln(content);
 
-                if(content && content.search(token) && content.search(noChanges) == -1){
+                if(content && content.search(token) && content.search(noChanges) === -1){
                     grunt.log.writeln("Found content in " + abspath);
                     grunt.log.writeln(">>> adding to buffer");
                     output += "\n" +content;
@@ -113,7 +112,7 @@ module.exports = function(grunt) {
                     contentMatch = content.match(token);
 
                 if(contentMatch){
-                    if(contentMatch.length == 1){
+                    if(contentMatch.length === 1){
                         grunt.log.writeln("Found exactly 1 @VERSION@ in " + abspath);
 
                         newContent = content.replace(token,VERSION);
