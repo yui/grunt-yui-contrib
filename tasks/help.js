@@ -20,6 +20,9 @@ module.exports = function(grunt) {
             ['test', 'Test the library with ' + 'yogi'.magenta],
             ['test-cli', 'Test the library via CLI with ' + 'yogi'.magenta],
             ['travis', 'Perform a travis test (uses enviroment vars to determine tests)'],
+            ['history-rollup', 'Creates History Rollup file (Run before history-replace)'],
+            ['history-populate', 'Populates History files with @VERSION@ if not there already'],
+            ['history-replace', 'Replaces @VERSION@ in History files with *release-version*'],
             ['help', 'Show this stuffs']
         ], len = 0,
         pad = function(line) {
@@ -32,7 +35,7 @@ module.exports = function(grunt) {
             ['--release-build=<BUILD>', 'Pass to set the build number of the release, if not passed the git sha will be used.'],
             ['--cache-build', 'Cache the ' + 'shifter'.magenta + ' build.'.white]
         ];
-        
+
         help.forEach(function(item) {
             var line = item[0];
             if (line.length > len) {
@@ -43,7 +46,7 @@ module.exports = function(grunt) {
         help.forEach(function(item) {
             grunt.log.writeln(pad(item[0]) +  item[1].white);
         });
-        
+
         grunt.log.writeln('');
         grunt.log.ok('Options:');
         grunt.log.writeln('');
@@ -59,7 +62,7 @@ module.exports = function(grunt) {
         opts.forEach(function(item) {
             grunt.log.writeln(pad(item[0]) +  item[1].white);
         });
-        
+
     });
 
 };
