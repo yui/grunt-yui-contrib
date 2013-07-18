@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('since-replace', 'replace @SINCE@ with current release version', function(){
         var fileCount = 0,
-        token = /@SINCE@/g
+        token = /@SINCE@/g;
 
         start = path.join(process.cwd(), 'src'); //only search src directory
         VERSION = grunt.config.get('version');
