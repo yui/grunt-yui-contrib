@@ -21,8 +21,8 @@ var tests = {
         topic: function() {
             return tasks.length;
         },
-        'and find 42 tasks': function(topic) {
-            assert.equal(42, topic);
+        'and find 43 tasks': function(topic) {
+            assert.equal(43, topic);
         }
     }
 };
@@ -31,7 +31,7 @@ var tests = {
 tasks.forEach(function(name) {
     tests['should have ' + name] = {
         topic: function() {
-            return grunt.task._tasks[name]
+            return grunt.task._tasks[name];
         },
         'should be an object': function(topic) {
             assert.isObject(topic);
