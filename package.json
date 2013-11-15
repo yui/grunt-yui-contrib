@@ -16,7 +16,8 @@
         "grunt": "~0.4.1",
         "yui-lint": "~0.1.1",
         "jshint": "~0.9.0",
-        "istanbul": "~0.1.8"
+        "istanbul": "~0.1.8",
+        "bower": "~1.2.5"
     },
     "keywords": [
         "yui", "grunt"
