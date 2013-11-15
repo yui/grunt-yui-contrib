@@ -13,7 +13,7 @@ var path = require('path'),
 
 module.exports = function(grunt) {
 
-    
+
     var STAMP = [
         '/*',
         '<%= buildtag %>',
@@ -67,11 +67,11 @@ module.exports = function(grunt) {
             fakeJSON = grunt.file.readJSON(path.join(process.cwd(), 'src/common/api/dist.json')),
             docJSON = path.join(start, 'yuidoc-dist.json'),
             child;
-        
+
         fakeJSON.version = VERSION;
 
         grunt.file.write(docJSON, JSON.stringify(fakeJSON, null, 4) + '\n');
-        
+
         child = exec(process.execPath, [
             yuidoc,
             '--config',
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('dist-docs', 'Dist Release Docs', function() {
-        
+
         grunt.log.writeln('Using Selleck to generate docs');
         var done = this.async(),
             base = path.join(start, 'dist', 'docs'),
@@ -102,10 +102,10 @@ module.exports = function(grunt) {
             fakeJSON = grunt.file.readJSON(path.join(process.cwd(), 'src/common/docs/dist.json')),
             selleckJSON = path.join(start, 'selleck-dist.json'),
             child;
-        
+
         fakeJSON.yuiVersion = VERSION;
         grunt.file.write(selleckJSON, JSON.stringify(fakeJSON, null, 4) + '\n');
-        
+
         child = exec(process.execPath, [
             selleck,
             '--meta',
@@ -125,14 +125,14 @@ module.exports = function(grunt) {
             fs.unlinkSync(selleckJSON);
             done();
         });
-        
+
     });
 
     grunt.registerTask('dist-extras', 'Adding extras to release', function() {
         grunt.log.writeln('Adding extras to release');
 
         var RM = path.join(process.cwd(), 'README.md'),
-            RRM = path.join(start, 'dist', 'README.md');
+            RRM = path.join(start, 'dist', 'README.md'),
             L = path.join(process.cwd(), 'LICENSE.md'),
             RL = path.join(start, 'dist', 'LICENSE.md');
 
@@ -167,7 +167,7 @@ module.exports = function(grunt) {
                         }
                     }
                 });
-                
+
                 Object.keys(skinSrc).forEach(function(dir) {
                     var skinFile = path.join(base, 'assets/skin/', dir, 'skin.css');
                     grunt.log.ok('Writing compiled skin:' + skinFile);
