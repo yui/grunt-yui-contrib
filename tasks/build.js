@@ -5,7 +5,9 @@ http://yuilibrary.com/license/
 */
 
 module.exports = function(grunt) {
-    if ('GRUNT_SKIP_BUILD' in process.env) {
+    // The `artifacts` directory will usually only ever in YUI's CI system.
+    // If you're in CI, and `build-npm` exists (meaning YUI's already built), skip the build.
+    if ((grunt.file.exists('artifacts') && grunt.file.exists('build-npm')) || 'GRUNT_SKIP_BUILD' in process.env) {
         grunt.registerTask('build', 'Building YUI', function() {
             grunt.log.ok('Found GRUNT_SKIP_BUILD in environment, skipping build.');
         });
