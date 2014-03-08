@@ -8,7 +8,10 @@ module.exports = function(grunt) {
     // The `artifacts` directory will usually only ever in YUI's CI system.
     // If you're in CI, `build-npm` exists, and this task was called in
     // response to the `postinstall` hook; skip the build.
-    if ((process.env.npm_lifecycle_event === "postinstall" && grunt.file.exists('artifacts') && grunt.file.exists('build-npm')) || 'GRUNT_SKIP_BUILD' in process.env) {
+    var isPostinstall = process.env.npm_lifecycle_event === "postinstall",
+        isCI = grunt.file.exists('artifacts') && grunt.file.exists('build-npm');
+
+    if ('GRUNT_SKIP_BUILD' in process.env || (isPostinstall && isCI)) {
         grunt.registerTask('build', 'Building YUI', function() {
             grunt.log.ok('Found GRUNT_SKIP_BUILD in environment, skipping build.');
         });
