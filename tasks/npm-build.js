@@ -73,6 +73,7 @@ module.exports = function(grunt) {
             grunt.log.writeln('...OK');
             grunt.file.copy(path.join(process.cwd(), 'README.md'), path.join(start, 'README.md'));
             grunt.file.copy(path.join(process.cwd(), 'package.json'), path.join(start, 'package.json'));
+            grunt.file.copy(path.join(process.cwd(), '.npmignore'), path.join(start, '.npmignore'));
             grunt.file.copy(path.join(process.cwd(), 'src/common/npm/package_index.js'), path.join(start, 'index.js'));
             done();
         });
